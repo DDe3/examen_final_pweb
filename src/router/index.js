@@ -8,18 +8,45 @@ const routes = [
     component: Home
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/vuelos',
+    name: 'Vuelos',
+    component: () => import(/* webpackChunkName: "vuelos" */ '../views/Vuelos.vue')
+  },
+  {
+    path: '/reservas',
+    name: 'Reservar',
+    component: () => import(/* webpackChunkName: "reservas" */ '../views/Reservar.vue')
   }
 ]
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes
+})
+
+const tokenValido = (token) => {
+  if ((token.toString()).startsWith('Bearer')) {
+    return true
+  }
+  return false
+}
+
+
+router.beforeEach((to, from, next) => {
+  console.log("to "+ "'" +to.path+ "'")
+  console.log("from "+"'" +from.path+ "'")
+  console.log("next "+"'" +next.path+ "'")
+  next()
+  if (to.path == "/") {
+    next()
+  }
+  if (tokenValido(tokenGenerado)) {
+    console.log("Token valido")
+    next()
+  } else {
+    console.log("Token inválido")
+  }
+
 })
 
 export default router
