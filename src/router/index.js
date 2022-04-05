@@ -41,7 +41,6 @@ router.beforeEach((to, from, next) => {
   console.log("to "+ "'" +to.path+ "'")
   console.log("from "+"'" +from.path+ "'")
   console.log("next "+"'" +next.path+ "'")
-  next()
   if (to.path == "/") {
     next()
   }
