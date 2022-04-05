@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import getToken from '../js/getToken.js'
+import getToken from "../js/getToken.js";
 export default {
   name: "NavBar",
   methods: {
@@ -29,6 +29,8 @@ export default {
           return "/vuelos" + "?token=" + this.token;
         case 3:
           return "/reservas" + "?token=" + this.token;
+        case 4:
+          return "/empleados" + "?token=" + this.token;
       }
     },
   },
@@ -51,10 +53,13 @@ export default {
           id: 3,
           name: "Reservar",
         },
+        {
+          id: 4,
+          name: "Empleados",
+        },
       ],
     };
   },
-  
 };
 </script>
 
